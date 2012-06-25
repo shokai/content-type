@@ -3,7 +3,12 @@
  * Module dependencies.
  */
 
-var express = require('express'), routes = require('./routes');
+var express = require('express');
+
+var routes = {
+    index: require('./routes'),
+    check_type: require('./routes/check_type')
+};
 
 var app = module.exports = express.createServer();
 
@@ -28,7 +33,9 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', routes.index);
+app.get('/', routes.index.index);
+app.get(/^\/type\/(https?:\/\/.+)/, routes.check_type.get_type);
+app.get(/^\/type\/(.+)\/(https?:\/\/.+)/, routes.check_type.check_type);
 
 app.listen(process.env.PORT || 5000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
