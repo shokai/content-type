@@ -1,2 +1,12 @@
 h1= title
-p Welcome to #{title}
+div Check Content-Type for Safety Embed Tag.
+
+h2 Embed
+.embeds
+  - each url in [app_root+'/type/image/http://twiticon.herokuapp.com/shokai', app_root+'/type/image/http://twiticon.herokuapp.com']
+    ul
+      li
+        div
+          input(type='text', value='<img src='+url+'>', size=100)
+        a(href = url)
+          img(src = url)
