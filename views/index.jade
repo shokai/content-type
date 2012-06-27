@@ -1,12 +1,35 @@
-h1= title
-div Check Content-Type for Safety Embed Tag.
-
-h2 Embed
-.embeds
-  - each url in [app_root+'/type/image/http://twiticon.herokuapp.com/shokai', app_root+'/type/image/http://twiticon.herokuapp.com']
+div
+  h1= title
+  - url = app_root+'/type/image/IMAGE_URL'
+  div= 'Check Content-Type for Safety Embed Tag with simple URL "'+url+'"'
+  h2 Embed Sample
+  .embeds
+    - each url in [app_root+'/type/image/http://twiticon.herokuapp.com/shokai/bigger', app_root+'/type/image/http://tumblr.com/logout#.png']
+      ul
+        li
+          div
+            input.img_tag(type='text', value='<img src="'+url+'">', size=100)
+          a(href = url)
+            img(src = url)
+  h2 API
+  .api
     ul
       li
+        h3 GET Content Type
+        - url = app_root+'/type/http://twiticon.herokuapp.com/shokai'
         div
-          input(type='text', value='<img src='+url+'>', size=100)
-        a(href = url)
-          img(src = url)
+          a(href = url)= url
+      li
+        h3 Redirect if Content Type matched
+        - url = app_root+'/type/image/http://twiticon.herokuapp.com/shokai'
+        div
+          a(href = url)= url
+      li
+        h3 Return Error (code 415) if Content Type NOT matched
+        - url = app_root+'/type/image/http://tumblr.com/logout#.png'
+        div
+          a(href = url)= url
+        - url = app_root+'/type/text/http://twiticon.herokuapp.com/shokai'
+        div
+          a(href = url)= url
+  
