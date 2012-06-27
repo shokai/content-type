@@ -5,7 +5,7 @@ h1, h2, h3, h4 {
 body {
   background-color: #281414;
   color: #c8c8c8;
-  font: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   padding : 50px;
 }
 
