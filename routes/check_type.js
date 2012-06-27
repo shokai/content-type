@@ -10,12 +10,14 @@ exports.get_type = function(req, res){
 };
 
 exports.check_type = function(req, res){
+    var app_root = (req.connection.encrypted ? 'https' : 'http') + '://' + req.headers['host'];
+
     var type = req.params[0];
     var url = req.params[1];
     checker.check(url, new RegExp('^'+type), function(ok){
         if(ok) res.redirect(url);
-        else res.send('content type error', 415);
+        else res.redirect(app_root+'/images/invalid.png')
     }, function(err, code){
-        res.send('error('+code+')', 500);
+        res.redirect(app_root+'/images/invalid.png')
     });
 };
