@@ -1,6 +1,8 @@
 h1= title
 - url = app_root+'/type/image/IMAGE_URL'
-div= 'Check Content-Type for Safety Embed Tag with simple URL "'+url+'"'
+div Check Content-Type for Safety Embed Tag with simple URL "
+  a(href=url)= url
+  "
 h2 Embed Sample
 div.embeds
   - each url in [app_root+'/type/image/http://twiticon.herokuapp.com/shokai/bigger', app_root+'/type/image/http://tumblr.com/logout#.png']
