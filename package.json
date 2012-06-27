@@ -6,7 +6,7 @@
         "express": "2.5.10",
         "jade": ">= 0.0.1",
         "request": ">= 2.9.0",
-        "memcache": ">= 0.3.0"
+        "memjs": ">= 0.2.1"
     },
     "engines" : {
         "node": "0.6.x"

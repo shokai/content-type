@@ -1,21 +1,19 @@
 // HTTP Status Checker
 
 var request = require('request');
-var memcache = require('memcache');
-var cache = new memcache.Client(11211, 'localhost');
-cache.connect();
+var memjs = require('memjs');
+var cache  = new memjs.Client.create(null, {expires: 60*60*4});
 
 var self = this;
 
 this.type = function(url, callback, errback){
     var cache_key = 'type_'+url;
-    cache.get(cache_key, function(err, type){
-        if(!err && type) callback(type);
+    cache.get(cache_key, function(type){
+        if(type) callback(type.toString());
         else{
             request.head(url, function (err, res, body) {
                 if (!err && res.statusCode == 200) {
-                    cache.set(cache_key, res.headers['content-type'],
-                              function(err, val){}, 60*60*4);
+                    cache.set(cache_key, res.headers['content-type']);
                     if(typeof callback === 'function') callback(res.headers['content-type']);
                 }
                 else{
