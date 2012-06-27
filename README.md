@@ -16,6 +16,7 @@ Install Dependencies
 Run
 ---
 
+    % memcached --vv -p 11211 -U 11211
     % foreman start
 
 => http://localhost:5000

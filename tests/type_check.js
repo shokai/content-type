@@ -1,4 +1,3 @@
-
 var checker = require(__dirname+'/../helpers/type_check.js');
 
 var urls = ['http://shokai.org', 'http://twiticon.herokuapp.com/shokai'];
