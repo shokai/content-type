@@ -16,8 +16,12 @@ exports.check_type = function(req, res){
     var url = req.params[1];
     checker.check(url, new RegExp('^'+type), function(ok){
         if(ok) res.redirect(url);
-        else res.redirect(app_root+'/images/invalid.png')
+        else{
+            if(type.match(/^image/i)) res.redirect(app_root+'/images/invalid.png');
+            else res.send('content type error', 415);
+        }
     }, function(err, code){
-        res.redirect(app_root+'/images/invalid.png')
+        if(type.match(/^image/i)) res.redirect(app_root+'/images/invalid.png');
+        else res.send('error('+code+')', 500);
     });
 };
