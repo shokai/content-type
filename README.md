@@ -25,6 +25,14 @@ Deploy
 ------
 
     % heroku create --stack cedar
+
+enable Memcache or Memcachier addon.
+
+    % heroku addons:add memcachier:25
+    % heroku addons:add memcache:free
+
+deploy
+
     % git push heroku master
     % heroku open
 
